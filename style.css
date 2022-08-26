@@ -1,0 +1,31 @@
+html,
+body {
+    margin: 0%;
+    padding: 0%;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 5fr;
+    background-color: aliceblue;
+}
+
+.header {
+    grid-area: 1 / 2 / 2 / span all;
+    display: grid;
+    background-color: aqua;
+
+}
+
+.dashboard {
+    grid-area: 1 / 1 / span all / 2;
+    background-color: rgba(0, 0, 0, .7);
+}
+
+.content {
+    grid-area: 2 / 2 / span all / span all;
+
+}
