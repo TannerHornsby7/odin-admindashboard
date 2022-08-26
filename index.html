@@ -9,7 +9,23 @@
 </head>
 <body>
     <div class="container">
-        <div class="header"></div>
+        <div class="header">
+            <div class="top">
+                <ion-icon size="large" name="volume-high-outline"></ion-icon>
+                <p>Hush: Moderator Page</p>
+            </div>
+            <div class="bottom">
+                <label for="search" class="icon">
+                    <ion-icon size="large" name="search-outline"></ion-icon>
+                </label>
+                <input type="search" id="search" name="search" placeholder="   Search for Threads Here">
+                <div class="userchunk">
+                    <ion-icon size="large" name="notifications-outline"></ion-icon>
+                    <img src="assets/lightprofilepic.png" alt="profilepic" height="50px">
+                    <p>Tanner Hornsby</p>
+                </div>
+            </div>
+        </div>
         <div class="dashboard">
             <ul>
                 <li>List Item 1</li>
@@ -25,5 +41,7 @@
             <div class="sidebar"></div>
         </div>
     </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

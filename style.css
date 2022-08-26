@@ -3,21 +3,103 @@ body {
     margin: 0%;
     padding: 0%;
     height: 100%;
+    font-family: monospace;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0%;
+    padding: 0%;
+    display: inline;
+    justify-self: center;
+    align-items: center;
+}
+
+input {
+    outline: none !important;
 }
 
 .container {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: 1fr 6fr;
     background-color: aliceblue;
 }
 
 .header {
-    grid-area: 1 / 2 / 2 / span all;
+    grid-area: 1 / 2 / 2 / 4;
     display: grid;
-    background-color: aqua;
+    grid-template-rows: 1fr 2fr;
+    background-color: black;
+    color: whitesmoke;
+    box-shadow: 2px 2px 6px 4px lightgray;
 
+}
+
+.top {
+    grid-row: 1 / 2;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    display: flex;
+    align-items: flex-end;
+}
+
+ion-icon {
+    display: inline-block;
+    color: whitesmoke;
+}
+
+.top p {
+    padding: 0%;
+    margin: 0%;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.bottom {
+    grid-row: 2 / 3;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 10fr 4fr;
+}
+
+.userchunk {
+    padding-left: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 6fr;
+    text-align: left;
+    font-size: 20px;
+    align-items: center;
+}
+
+.bottom ion-icon {
+    justify-self: right;
+    padding-right: 10px;
+}
+.bottom label {
+    justify-self: right;
+    align-self: center;
+    padding: 10px;
+}
+
+#search {
+    align-self: center;
+    height: 35px;
+    background-color: lightgray;
+    border-radius: 20px;
+    border: none;
+}
+
+#search:hover {
+    box-shadow: 2px 2px 2px 1px darkslategrey;
+}
+
+#search:focus {
+    box-shadow: 2px 2px 2px 1px darkslategrey;
+    background-color: aliceblue;
 }
 
 .dashboard {
@@ -26,6 +108,6 @@ body {
 }
 
 .content {
-    grid-area: 2 / 2 / span all / span all;
+    grid-area: 2 / 2 / 3 / span all;
 
 }
