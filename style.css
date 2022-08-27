@@ -1,21 +1,15 @@
-html,
-body {
-    margin: 0%;
-    padding: 0%;
-    height: 100%;
-    font-family: monospace;
-    color: whitesmoke;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-h2 {
-    font: monospace;
+html {
+    height: 100vh;
 }
 
 ul,
 li {
     list-style: none;
-    margin: 0%;
-    padding: 0%;
     display: inline;
 }
 
@@ -30,11 +24,9 @@ ion-icon {
 }
 
 .container {
-    height: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr 6fr;
-    background-color: aliceblue;
+    grid-template-rows: 1fr 5fr 10fr;
 }
 
 .header {
@@ -44,7 +36,7 @@ ion-icon {
     background-color: black;
     color: whitesmoke;
     box-shadow: 2px 2px 6px 4px lightgray;
-
+    padding: 15px;
 }
 
 .top {
@@ -56,22 +48,20 @@ ion-icon {
     align-items: flex-end;
 }
 
-.top p {
-    padding: 0%;
-    margin: 0%;
+.top h3 {
+    font-family: monospace;
     font-size: 25px;
     font-weight: 400;
 }
 
 .bottom {
     grid-row: 2 / 3;
-    width: 100%;
     display: grid;
-    grid-template-columns: 2fr 10fr 4fr;
+    grid-template-columns: 2fr 10fr 5fr;
 }
 
 .userchunk {
-    padding-left: 15px;
+    padding-left: 20%;
     display: grid;
     grid-template-columns: 1fr 1fr 6fr;
     text-align: left;
@@ -79,10 +69,6 @@ ion-icon {
     align-items: center;
 }
 
-.bottom ion-icon {
-    justify-self: right;
-    padding-right: 10px;
-}
 .bottom label {
     justify-self: right;
     align-self: center;
@@ -95,6 +81,7 @@ ion-icon {
     background-color: lightgray;
     border-radius: 20px;
     border: none;
+    padding-right: 30%;
 }
 
 #search:hover {
@@ -109,17 +96,19 @@ ion-icon {
 }
 
 .dashboard {
-    grid-area: 1 / 1 / span all / 2;
+    box-sizing: border-box;
+    grid-area: 1 / 1 / span all/ 2;
     background-color: rgba(0, 0, 0, .9);
     font-size: 32px;
-    box-shadow: 5px 0 8px -1px #888;
+    box-shadow: 5px 0 5px -6px #888;    
 }
 
 .dashboard ul {
+    position: sticky;
+    padding-top: 125px;
     display: grid;
-    grid-template-rows: 2fr repeat(autofit, minmax(15px, 1fr ));
-    gap: 25px;
-    resize: both;
+    grid-template-rows: 2fr repeat(6, 1fr);
+    gap: 50px;
     justify-content: center;
 }
 
@@ -128,17 +117,86 @@ ion-icon {
 }
 
 .dashboard ul li {
-    display: block;
-    padding: 0%;
-    margin: 0%;
+    display: inline;
+    font-family: monospace;
+    color: whitesmoke;
+}
+
+.dashboard ul li p {
+    display: inline;
+}
+
+.dashboard ul li:first-child {
+    border-bottom: 1px solid white;
 }
 
 .dashboard ul li:hover {
-    color: #888;
+    color: gray;
     cursor: pointer;
+    transition: all .5 ease;
 }
 
 .content {
-    grid-area: 2 / 2 / 3 / span all;
+    grid-area: 2 / 2 / 3 / 4;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr 4fr;
+    resize: both;
+    color: black;
+    padding: 5px;
+}
+.content h3 {
+    display: inline;
+}
 
+.content #comm {
+    grid-area: 1 / 1 / 2 / 2;
+    text-align: center;
+    align-self: flex-end;
+    padding-bottom: 15px;
+}
+
+.content #ann {
+    grid-area: 1 / 2 / 2 / 3;
+    text-align: center;
+    align-self: flex-end;
+    padding-bottom: 15px;
+}
+
+.posts {
+    background-color: whitesmoke;
+    grid-row: 2 / 5;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    overflow: scroll;
+    padding: 10px;
+}
+
+.post {
+    font-family: monospace;
+    box-sizing: border-box;
+    color: black;
+    border: 2px solid #888;
+    border-radius: 5px;
+    height: 200px;
+    padding: 15px;
+}
+
+.post h4 {
+    text-align: center;
+}
+
+.post p {
+    text-align: left;
+}
+
+.post ion-icon {
+    color: black;
+}
+
+.modchat {
+    grid-row: 2 / 3;
+    color: black;
+    background-color: white;
 }
