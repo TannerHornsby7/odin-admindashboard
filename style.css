@@ -4,6 +4,11 @@ body {
     padding: 0%;
     height: 100%;
     font-family: monospace;
+    color: whitesmoke;
+}
+
+h2 {
+    font: monospace;
 }
 
 ul,
@@ -12,12 +17,16 @@ li {
     margin: 0%;
     padding: 0%;
     display: inline;
-    justify-self: center;
-    align-items: center;
 }
 
 input {
     outline: none !important;
+}
+
+ion-icon {
+    display: inline-block;
+    color: whitesmoke;
+    font-size: 32px;
 }
 
 .container {
@@ -45,11 +54,6 @@ input {
     justify-content: center;
     display: flex;
     align-items: flex-end;
-}
-
-ion-icon {
-    display: inline-block;
-    color: whitesmoke;
 }
 
 .top p {
@@ -95,16 +99,43 @@ ion-icon {
 
 #search:hover {
     box-shadow: 2px 2px 2px 1px darkslategrey;
+    transition: all .5s ease;
 }
 
 #search:focus {
     box-shadow: 2px 2px 2px 1px darkslategrey;
     background-color: aliceblue;
+    transition: all .5s ease;
 }
 
 .dashboard {
     grid-area: 1 / 1 / span all / 2;
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, .9);
+    font-size: 32px;
+    box-shadow: 5px 0 8px -1px #888;
+}
+
+.dashboard ul {
+    display: grid;
+    grid-template-rows: 2fr repeat(autofit, minmax(15px, 1fr ));
+    gap: 25px;
+    resize: both;
+    justify-content: center;
+}
+
+.dashboard h3 {
+    display: inline-block;
+}
+
+.dashboard ul li {
+    display: block;
+    padding: 0%;
+    margin: 0%;
+}
+
+.dashboard ul li:hover {
+    color: #888;
+    cursor: pointer;
 }
 
 .content {
