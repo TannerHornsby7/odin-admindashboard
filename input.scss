@@ -89,6 +89,14 @@
             text-align: left;
             font-size: 20px;
             align-items: center;
+
+            p {
+                padding-left: 4px;
+            }
+            
+            >:hover {
+                @include hover(darkGray);
+            }
         }
     }
 }
@@ -263,15 +271,20 @@
         gap: 10px;
         padding: 15px;
 
-
         div {
             box-sizing: border-box;
             background-color: white;
             border-radius: 15px;
             box-shadow: 5px 5px 2px #888;
             padding: 5px;
+
+            &:hover {
+                @include hover(red)
+            }
+    
         }
         
+
     }
 
     .modchat {
