@@ -83,15 +83,23 @@
             padding: 10px;
         }
         .userchunk {
-            padding-left: 20%;
-            display: grid;
+            display: flex;
             grid-template-columns: 1fr 1fr 6fr;
             text-align: left;
             font-size: 20px;
             align-items: center;
+            justify-content: right;
 
             p {
-                padding-left: 4px;
+                flex: auto;
+                padding: 4px;
+            }
+            img {
+                flex: none;
+            }
+            ion-icon {
+                padding-left: 10px;
+                flex: none;
             }
             
             >:hover {
@@ -111,12 +119,10 @@
     padding-left: 10px;
 
     &:hover {
-        @include shadow;
         background: whitesmoke;
     }
     
     &:focus {
-        @include shadow;
         background: white;
     }
 }
@@ -137,7 +143,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 5%;
+        gap: 1%;
         color: whitesmoke;
         padding: 5%;
         justify-content: center;
@@ -151,6 +157,12 @@
             margin-top: 15%;
             color: whitesmoke;
             border-bottom: 1px solid whitesmoke;
+            display: flex;
+            gap: 5%;
+
+            ion-icon {
+                flex: none;
+            }
 
             h2 {
                 flex: auto;
@@ -164,6 +176,9 @@
                 p {
                     flex: auto;
                 }
+                ion-icon {
+                    flex: auto;
+                }
             }
     
         }
@@ -171,7 +186,7 @@
 }
 
 .content {
-    background-color: whitesmoke;
+    background-color: rgba($color: gray, $alpha: .2);
     grid-area: 2 / 2 / 3 / 4;
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -209,6 +224,7 @@
         display: grid;
         gap: 10px;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-rows: repreat(auto-fit, min-content);
         max-height: 615px;
         overflow: scroll;
         padding: 10px;
@@ -227,7 +243,7 @@
         box-sizing: border-box;
         color: black;
         border-radius: 5px;
-        height: 200px;
+        height: min-content;
         padding: 15px;
         border-radius: 10px;
         border-left: 10px solid darkgoldenrod;
@@ -268,18 +284,31 @@
         grid-area: 2 / 2 / 3 / 3;
         display: grid;
         grid-template-rows: 1fr 1fr 1fr;
-        gap: 10px;
-        padding: 15px;
+        gap: 3%;
+        padding: 3%;
 
         div {
             box-sizing: border-box;
             background-color: white;
             border-radius: 15px;
             box-shadow: 5px 5px 2px #888;
-            padding: 5px;
+            padding: 2%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px solid black;
+            overflow: hidden;
+
+            h4 {
+                flex: auto;
+            }
+            p {
+                flex: auto;
+            }
 
             &:hover {
-                @include hover(red)
+                border: red;
             }
     
         }
