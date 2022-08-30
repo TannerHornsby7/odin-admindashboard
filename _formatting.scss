@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    font-family: monospace;
+}
+
+div {
+    border: 2px dotted green;
+}
+
+ul,
+li {
+    list-style: none;
+    display: inline;
+}
+
+input {
+    outline: none !important;
+}
+
+ion-icon {
+    display: inline-block;
+    color: whitesmoke;
+    font-size: 32px;
+}
+
+h3 {
+    font-family: inherit;
+}
+
+h4 {
+    font-family: inherit;
+}
