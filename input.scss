@@ -1,70 +1,106 @@
 @use 'formatting';
 
+@mixin hoverwhite($theme: white) {
+    background-color: $theme;
+    color: black;
+    box-shadow: 1 1 1 rgba(DarkGray, .3);
+    transition: all .5 ease-in-out;
+
+    ion-icon {
+        color: black;
+    }
+}
+
+@mixin hover($theme) {
+    color: $theme;
+    transition: all .2s ease-in;
+    cursor: pointer;
+
+    ion-icon {
+        color: $theme;
+    }
+}
+
+@mixin lightTheme($theme: whitesmoke) {
+    background: $theme;
+    box-shadow: 1 1 1 rgba($theme, .3);
+    color: black;
+    transition: all .5s ease-in-out;
+}
+
+@mixin darkTheme($theme: black) {
+    background: $theme;
+    box-shadow: 2px 2px 6px 4px lightgray;
+    color: whitesmoke;
+    transition: all .5s ease-in-out;
+}
+
 @mixin shadow($theme: DarkGray) {
     background: $theme;
     box-shadow: 3px 3px 1px rgba($theme, 1);
-    color: #fff;
+    color: black;
     transition: all .5s ease-in-out;
 }
 
 .container {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr 8fr;
+    grid-template-rows: minmax(15%, 1fr) 8fr;
 }
 
 .header {
-    grid-area: 1 / 2 / 2 / 4;
+    @include darkTheme;
+    grid-area: 1 / 2 / 2 / span all;
     display: grid;
-    grid-template-rows: 1fr 2fr;
-    background-color: black;
-    color: whitesmoke;
-    box-shadow: 2px 2px 6px 4px lightgray;
-    padding: 15px;
-}
+    grid-template-rows: 2fr 2fr;
 
-.top {
-    grid-row: 1 / 2;
-    width: 100%;
-    display: grid;
-    justify-content: center;
-    display: flex;
-    align-items: flex-end;
-    
-    h3 {
-    font-size: 25px;
-    font-weight: 400;
+    .top {
+        grid-row: 1 / 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        font-size: 32px;
+        
+        ion-icon {
+            display: inline-block;
+        }
+
+        h3 {
+        font-size: 32px;
+        font-weight: 400;
+        }
     }
-}
 
-.bottom {
-    grid-row: 2 / 3;
-    display: grid;
-    grid-template-columns: 2fr 10fr 5fr;
+    .bottom {
+        grid-row: 2 / 3;
+        display: grid;
+        grid-template-columns: 2fr 10fr 5fr;
 
-    label {
-        justify-self: right;
-        align-self: center;
-        padding: 10px;
+        label {
+            justify-self: right;
+            align-self: center;
+            padding: 10px;
+        }
+        .userchunk {
+            padding-left: 20%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 6fr;
+            text-align: left;
+            font-size: 20px;
+            align-items: center;
+        }
     }
-}
-
-.userchunk {
-    padding-left: 20%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 6fr;
-    text-align: left;
-    font-size: 20px;
-    align-items: center;
 }
 
 #search {
     align-self: center;
     height: 35px;
     background-color: lightgray;
+    color: black;
     border-radius: 20px;
     border: none;
-    padding-right: 30%;
+    padding-left: 10px;
 
     &:hover {
         @include shadow;
@@ -79,44 +115,51 @@
 
 .dashboard {
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 2%;
     grid-area: 1 / 1 / 3 / 2;
     background-color: rgba(0, 0, 0, .9);
     font-size: 32px;
     box-shadow: 5px 0 5px -6px #888; 
 
-    ul {
-        position: sticky;
-        padding-top: 125px;
-        display: grid;
-        grid-template-rows: 2fr repeat(6, 1fr);
-        gap: 50px;
+    div {
+        display: flex;
         justify-content: center;
+        align-items: center;
+        gap: 5%;
+        color: whitesmoke;
+        padding: 5%;
+        justify-content: center;
+        
+        ion-icon {
+            flex: none;
+            font-size: 32px;
+        }
 
-        li {
-            display: inline;
-            font-family: monospace;
+        &:first-child {
+            margin-top: 15%;
             color: whitesmoke;
+            border-bottom: 1px solid whitesmoke;
 
-            &:first-child {
-                border-bottom: 1px solid white;
+            h2 {
+                flex: auto;
             }
-                
-            p {
-                display: inline;
+        
+            & ~ div{
+                &:hover {
+                    @include hoverwhite;
+                    cursor: pointer;
+                }    
+                p {
+                    flex: auto;
+                }
             }
-            
-            p:hover {
-                color: gray;
-                cursor: pointer;
-                transition: all .5 ease;
-            }
+    
         }
     }
-
-    h3 {
-        display: inline-block;
-    }
-    
 }
 
 .content {
@@ -128,15 +171,12 @@
     color: black;
     padding: 5px;
 
-    h3 {
-        display: inline;
-    }
-
     #comm {
         grid-area: 1 / 1 / 2 / 2;
         text-align: center;
         align-self: flex-end;
         padding-bottom: 15px;
+        font-size: 24px;
     }
 
     #ann {
@@ -144,76 +184,138 @@
         text-align: center;
         align-self: flex-end;
         padding-bottom: 15px;
+        font-size: 24px;
     }
-}
 
-.posts {
-    background-color: whitesmoke;
-    grid-row: 2 / span all;
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    max-height: 615px;
-    overflow: scroll;
-    padding: 10px;
-    background-color: whitesmoke;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-    &::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-    }
-}
-
-
-.post {
-    background-color: white ;
-    font-family: monospace;
-    box-sizing: border-box;
-    color: black;
-    border-radius: 5px;
-    height: 200px;
-    padding: 15px;
-    border-radius: 10px;
-    border-left: 10px solid darkgoldenrod;
-    box-shadow: 0px 3px 2px #888;
-
-    h4 {
+    #mc {
+        grid-area: 3 / 2 / 4 / 3;
         text-align: center;
+        align-self: flex-end;
+        padding-bottom: 15px;
+        font-size: 24px;
     }
 
-    p {
-        text-align: left;
+
+    .posts {
+        grid-row: 2 / span all;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        max-height: 615px;
+        overflow: scroll;
+        padding: 10px;
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+        &::-webkit-scrollbar { 
+        display: none;  /* Safari and Chrome */
+        }
     }
 
-    ion-icon {
-        color: black;
-    }
-}
 
-.announcements {
-    display: grid;
-    gap: 10px;
-    padding: 15px;
-
-    h4 {
-    box-shadow: 0px 3px 2px #888;
-    }
-
-    div {
+    .post {
+        display: flex;
+        flex-direction: column;
+        background-color: white ;
         box-sizing: border-box;
-        background-color: white;
-        border-radius: 15px;
-        box-shadow: 5px 5px 2px #888;
-        padding: 5px;
-    }
-    
-}
+        color: black;
+        border-radius: 5px;
+        height: 200px;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 10px solid darkgoldenrod;
+        box-shadow: 0px 3px 2px #888;
+        justify-content: center;
+        align-items: stretch;
+        h4 {
+            margin-bottom: 5%;
+        }
 
-.modchat {
-    background-color: white;
-    border: 2px solid black;
-    box-sizing: border-box;
-    margin: 50px;
-    grid-area: 3 / 2 / 5 / 3;
-    color: black;
+        p {
+            margin-bottom: 15%;
+            color: lighten(black, 25%);
+        }
+        .sharepost {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 60%;
+
+            ion-icon {
+                flex: auto;
+
+                &:hover {
+                    @include hover(blue);
+                }
+            }
+            ion-icon:last-child {
+                margin-bottom: 2%;
+            }
+        }
+        ion-icon {
+            color: black;
+        }
+    }
+
+    .announcements {
+        grid-area: 2 / 2 / 3 / 3;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 10px;
+        padding: 15px;
+
+
+        div {
+            box-sizing: border-box;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 5px 5px 2px #888;
+            padding: 5px;
+        }
+        
+    }
+
+    .modchat {
+        grid-area: 4 / 2 / 5 / 3;
+        background-color: lightgray;
+        border: 2px solid black;
+        box-sizing: border-box;
+        margin: 10px 10px 50px 10px;
+        color: black;
+        .textscreen {
+            height: 93%;
+            box-sizing: border-box;
+            margin: 10px;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: whitesmoke;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: stretch;
+
+            .messageblock {
+                box-sizing: border-box;
+                flex: auto;
+                display: flex;
+                justify-content: space-between;
+                padding: 5px;
+                border-bottom: 1px solid rgba(0, 0, 0, $alpha: .1);
+                margin-bottom: 5px;
+
+                .time {
+                    font-size: x-small;
+                }
+            }
+
+            .mymessage {
+                box-sizing: border-box;
+                flex: auto;
+                display: grid;
+                padding: 5px;
+                margin-bottom: 5px;
+         
+            }
+
+        }
+    }
 }

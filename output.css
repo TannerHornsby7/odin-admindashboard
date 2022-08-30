@@ -6,11 +6,7 @@
 html,
 body {
   width: 100%;
-  font-family: monospace;
-}
-
-div {
-  border: 2px dotted green;
+  font-family: Alegreya;
 }
 
 ul,
@@ -29,8 +25,13 @@ ion-icon {
   font-size: 32px;
 }
 
+h2 {
+  font-family: inherit;
+}
+
 h3 {
   font-family: inherit;
+  display: inline;
 }
 
 h4 {
@@ -40,44 +41,44 @@ h4 {
 .container {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 8fr;
+  grid-template-rows: minmax(15%, 1fr) 8fr;
 }
 
 .header {
-  grid-area: 1/2/2/4;
-  display: grid;
-  grid-template-rows: 1fr 2fr;
-  background-color: black;
-  color: whitesmoke;
+  background: black;
   box-shadow: 2px 2px 6px 4px lightgray;
-  padding: 15px;
-}
-
-.top {
-  grid-row: 1/2;
-  width: 100%;
+  color: whitesmoke;
+  transition: all 0.5s ease-in-out;
+  grid-area: 1/2/2/span all;
   display: grid;
-  justify-content: center;
-  display: flex;
-  align-items: flex-end;
+  grid-template-rows: 2fr 2fr;
 }
-.top h3 {
-  font-size: 25px;
+.header .top {
+  grid-row: 1/2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 32px;
+}
+.header .top ion-icon {
+  display: inline-block;
+}
+.header .top h3 {
+  font-size: 32px;
   font-weight: 400;
 }
-
-.bottom {
+.header .bottom {
   grid-row: 2/3;
   display: grid;
   grid-template-columns: 2fr 10fr 5fr;
 }
-.bottom label {
+.header .bottom label {
   justify-self: right;
   align-self: center;
   padding: 10px;
 }
-
-.userchunk {
+.header .bottom .userchunk {
   padding-left: 20%;
   display: grid;
   grid-template-columns: 1fr 1fr 6fr;
@@ -90,58 +91,71 @@ h4 {
   align-self: center;
   height: 35px;
   background-color: lightgray;
+  color: black;
   border-radius: 20px;
   border: none;
-  padding-right: 30%;
+  padding-left: 10px;
 }
 #search:hover {
   background: DarkGray;
   box-shadow: 3px 3px 1px darkgray;
-  color: #fff;
+  color: black;
   transition: all 0.5s ease-in-out;
   background: whitesmoke;
 }
 #search:focus {
   background: DarkGray;
   box-shadow: 3px 3px 1px darkgray;
-  color: #fff;
+  color: black;
   transition: all 0.5s ease-in-out;
   background: white;
 }
 
 .dashboard {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 2%;
   grid-area: 1/1/3/2;
   background-color: rgba(0, 0, 0, 0.9);
   font-size: 32px;
   box-shadow: 5px 0 5px -6px #888;
 }
-.dashboard ul {
-  position: sticky;
-  padding-top: 125px;
-  display: grid;
-  grid-template-rows: 2fr repeat(6, 1fr);
-  gap: 50px;
+.dashboard div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  color: whitesmoke;
+  padding: 5%;
   justify-content: center;
 }
-.dashboard ul li {
-  display: inline;
-  font-family: monospace;
+.dashboard div ion-icon {
+  flex: none;
+  font-size: 32px;
+}
+.dashboard div:first-child {
+  margin-top: 15%;
   color: whitesmoke;
+  border-bottom: 1px solid whitesmoke;
 }
-.dashboard ul li:first-child {
-  border-bottom: 1px solid white;
+.dashboard div:first-child h2 {
+  flex: auto;
 }
-.dashboard ul li p {
-  display: inline;
-}
-.dashboard ul li p:hover {
-  color: gray;
+.dashboard div:first-child ~ div:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 1 1 1 rgba(169, 169, 169, 0.3);
+  transition: all 0.5 ease-in-out;
   cursor: pointer;
-  transition: all 0.5 ease;
 }
-.dashboard h3 {
-  display: inline-block;
+.dashboard div:first-child ~ div:hover ion-icon {
+  color: black;
+}
+.dashboard div:first-child ~ div p {
+  flex: auto;
 }
 
 .content {
@@ -153,24 +167,28 @@ h4 {
   color: black;
   padding: 5px;
 }
-.content h3 {
-  display: inline;
-}
 .content #comm {
   grid-area: 1/1/2/2;
   text-align: center;
   align-self: flex-end;
   padding-bottom: 15px;
+  font-size: 24px;
 }
 .content #ann {
   grid-area: 1/2/2/3;
   text-align: center;
   align-self: flex-end;
   padding-bottom: 15px;
+  font-size: 24px;
 }
-
-.posts {
-  background-color: whitesmoke;
+.content #mc {
+  grid-area: 3/2/4/3;
+  text-align: center;
+  align-self: flex-end;
+  padding-bottom: 15px;
+  font-size: 24px;
+}
+.content .posts {
   grid-row: 2/span all;
   display: grid;
   gap: 10px;
@@ -178,17 +196,16 @@ h4 {
   max-height: 615px;
   overflow: scroll;
   padding: 10px;
-  background-color: whitesmoke;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
 }
-.posts::-webkit-scrollbar {
+.content .posts::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
-
-.post {
+.content .post {
+  display: flex;
+  flex-direction: column;
   background-color: white;
-  font-family: monospace;
   box-sizing: border-box;
   color: black;
   border-radius: 5px;
@@ -197,40 +214,91 @@ h4 {
   border-radius: 10px;
   border-left: 10px solid darkgoldenrod;
   box-shadow: 0px 3px 2px #888;
+  justify-content: center;
+  align-items: stretch;
 }
-.post h4 {
-  text-align: center;
+.content .post h4 {
+  margin-bottom: 5%;
 }
-.post p {
-  text-align: left;
+.content .post p {
+  margin-bottom: 15%;
+  color: #404040;
 }
-.post ion-icon {
+.content .post .sharepost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 60%;
+}
+.content .post .sharepost ion-icon {
+  flex: auto;
+}
+.content .post .sharepost ion-icon:hover {
+  color: blue;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+.content .post .sharepost ion-icon:hover ion-icon {
+  color: blue;
+}
+.content .post .sharepost ion-icon:last-child {
+  margin-bottom: 2%;
+}
+.content .post ion-icon {
   color: black;
 }
-
-.announcements {
+.content .announcements {
+  grid-area: 2/2/3/3;
   display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 10px;
   padding: 15px;
 }
-.announcements h4 {
-  box-shadow: 0px 3px 2px #888;
-}
-.announcements div {
+.content .announcements div {
   box-sizing: border-box;
   background-color: white;
   border-radius: 15px;
   box-shadow: 5px 5px 2px #888;
   padding: 5px;
 }
-
-.modchat {
-  background-color: white;
+.content .modchat {
+  grid-area: 4/2/5/3;
+  background-color: lightgray;
   border: 2px solid black;
   box-sizing: border-box;
-  margin: 50px;
-  grid-area: 3/2/5/3;
+  margin: 10px 10px 50px 10px;
   color: black;
+}
+.content .modchat .textscreen {
+  height: 93%;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.content .modchat .textscreen .messageblock {
+  box-sizing: border-box;
+  flex: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+}
+.content .modchat .textscreen .messageblock .time {
+  font-size: x-small;
+}
+.content .modchat .textscreen .mymessage {
+  box-sizing: border-box;
+  flex: auto;
+  display: grid;
+  padding: 5px;
+  margin-bottom: 5px;
 }
 
 /*# sourceMappingURL=output.css.map */

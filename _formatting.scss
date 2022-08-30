@@ -6,11 +6,7 @@
 html,
 body {
     width: 100%;
-    font-family: monospace;
-}
-
-div {
-    border: 2px dotted green;
+    font-family: Alegreya;
 }
 
 ul,
@@ -29,8 +25,12 @@ ion-icon {
     font-size: 32px;
 }
 
+h2 {
+    font-family: inherit;
+}
 h3 {
     font-family: inherit;
+    display: inline;
 }
 
 h4 {
